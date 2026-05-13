@@ -471,65 +471,65 @@
 
       <!-- SVG 手掌示意圖 -->
       <div class="hand-svg-wrap">
-        <svg viewBox="0 0 220 340" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 205 298" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <style>
-              .hf { fill:#FDDCB5; stroke:#c8845a; stroke-width:1.8; }
               .dl { stroke:#E74C3C; stroke-width:2.2; stroke-dasharray:5,3.5; fill:none; opacity:0.88; }
               .pl { fill:#C0392B; font-weight:900; font-family:'Noto Sans TC',Arial,sans-serif; }
-              .tl { fill:#555; font-family:'Noto Sans TC',Arial,sans-serif; font-weight:700; }
+              .tl { fill:#666; font-family:'Noto Sans TC',Arial,sans-serif; font-weight:700; }
             </style>
           </defs>
 
           <!--
-            手掌高度：y=155 → y=290  共 135px
-            中指長度：y=16  → y=155  共 139px
-            食指長度：y=38  → y=155  共 117px
-            無名指：  y=26  → y=155  共 129px
-            小指：    y=56  → y=155  共  99px
-            → 中指與掌心幾乎等長，手指整體與掌心視覺平衡
+            單一連續路徑：掌心 132px，中指 135px，視覺等長
+            以單路徑繪製消除矩形拼接的接縫問題
           -->
+          <path
+            fill="#FDDCB5" stroke="#c8845a" stroke-width="1.8"
+            stroke-linejoin="round" stroke-linecap="round"
+            d="
+              M 55 283 L 55 218
+              Q 46 208 38 196
+              Q 26 178 22 156
+              Q 18 132 24 110
+              Q 28 94 40 88
+              Q 52 82 62 90
+              Q 70 98 68 118
+              L 68 153
+              L 68 43
+              Q 68 26 80 26
+              Q 92 26 92 43
+              L 92 153
+              Q 96 172 100 153
+              L 100 36
+              Q 100 18 112 18
+              Q 124 18 124 36
+              L 124 153
+              Q 128 172 132 153
+              L 132 46
+              Q 132 30 143 30
+              Q 154 30 154 46
+              L 154 153
+              Q 157 172 160 153
+              L 160 70
+              Q 160 54 170 54
+              Q 180 54 180 70
+              L 180 218
+              Q 180 283 163 283
+              Z
+            "
+          />
 
-          <!-- ① 先畫手掌（底層） -->
-          <path class="hf" d="
-            M 60 155
-            L 178 155
-            Q 195 155 195 172
-            L 195 275
-            Q 195 290 178 290
-            L 64 290
-            Q 46 290 44 274
-            L 42 178
-            L 60 178
-            Z
-          "/>
+          <!-- 掌指分界（橫向） -->
+          <line class="dl" x1="68" y1="153" x2="180" y2="153"/>
+          <!-- 左兩指 vs 右兩指（縱向） -->
+          <line class="dl" x1="128" y1="18" x2="128" y2="153"/>
 
-          <!-- ② 拇指 -->
-          <path class="hf" d="M44 178 Q20 166 18 136 Q16 104 38 90 Q56 82 62 104 L62 180 Z"/>
-
-          <!-- ③ 手指（蓋在手掌上方，根部略入手掌使接縫自然） -->
-          <!-- 食指 -->
-          <rect class="hf" x="50" y="38" width="30" height="122" rx="14"/>
-          <!-- 中指 -->
-          <rect class="hf" x="84" y="16" width="30" height="144" rx="14"/>
-          <!-- 無名指 -->
-          <rect class="hf" x="118" y="26" width="28" height="134" rx="13"/>
-          <!-- 小指 -->
-          <rect class="hf" x="150" y="56" width="24" height="104" rx="11"/>
-
-          <!-- ④ 分割線（最上層，覆蓋填色） -->
-          <!-- 橫向：手指與掌心分界 -->
-          <line class="dl" x1="42" y1="155" x2="195" y2="155"/>
-          <!-- 縱向：左兩指 vs 右兩指（食中 | 無名小） -->
-          <line class="dl" x1="115" y1="16" x2="115" y2="155"/>
-
-          <!-- ⑤ 份量標籤 -->
-          <text class="pl" font-size="18" x="80"  y="92"  text-anchor="middle">1P</text>
-          <text class="pl" font-size="18" x="152" y="92"  text-anchor="middle">1P</text>
-          <text class="pl" font-size="24" x="118" y="228" text-anchor="middle">2P</text>
-
-          <!-- ⑥ 底部總計 -->
-          <text class="tl" font-size="12" x="118" y="314" text-anchor="middle">整手 ＝ 4P</text>
+          <!-- 份量標籤 -->
+          <text class="pl" font-size="16" x="96"  y="88"  text-anchor="middle">1P</text>
+          <text class="pl" font-size="16" x="157" y="94"  text-anchor="middle">1P</text>
+          <text class="pl" font-size="22" x="118" y="218" text-anchor="middle">2P</text>
+          <text class="tl" font-size="11" x="118" y="294" text-anchor="middle">整手 ＝ 4P</text>
         </svg>
       </div>
 

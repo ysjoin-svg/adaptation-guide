@@ -17,8 +17,6 @@
       --F:      #27AE60;
       --F-light:#e8f8ef;
       --F-mid:  #b2f0cb;
-      --M:      #8E44AD;
-      --M-light:#f3e8fd;
       --neutral:#2C7BE5;
       --bg:     #F8FAFC;
       --card:   #ffffff;
@@ -48,23 +46,26 @@
 
     /* ── 代碼圖例 ── */
     .legend {
-      display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center;
-      padding:1rem 1.25rem; background:var(--card);
+      display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center; align-items:center;
+      padding:0.85rem 1.25rem; background:var(--card);
       border-bottom:1px solid var(--border); box-shadow:0 2px 8px rgba(0,0,0,0.05);
       position:sticky; top:0; z-index:100;
     }
     .legend-item {
-      display:flex; align-items:center; gap:0.5rem;
-      font-size:0.85rem; font-weight:700;
+      display:flex; align-items:center; gap:0.45rem;
+      font-size:0.82rem;
     }
-    .code-pill {
-      width:28px; height:28px; border-radius:50%;
+    .legend-item .code-pill {
+      width:26px; height:26px; border-radius:50%;
       display:flex; align-items:center; justify-content:center;
-      font-size:0.85rem; font-weight:900; color:#fff; flex-shrink:0;
+      font-size:0.8rem; font-weight:900; color:#fff; flex-shrink:0;
     }
-    .legend a { color:var(--muted); text-decoration:none; font-size:0.82rem; font-weight:600; }
+    .legend-item .leg-text { line-height:1.25; }
+    .legend-item .leg-en { font-size:0.68rem; color:var(--muted); font-style:italic; display:block; }
+    .legend-item .leg-zh { font-weight:700; display:block; font-size:0.8rem; }
+    .legend a { color:var(--muted); text-decoration:none; font-size:0.8rem; font-weight:600; }
     .legend a:hover { color:var(--neutral); }
-    .legend-sep { color:var(--border); }
+    .legend-sep { color:var(--border); font-size:1.1rem; }
 
     /* ── 版面 ── */
     .container { max-width:900px; margin:0 auto; padding:0 1.1rem; }
@@ -100,15 +101,28 @@
     }
     .food-card {
       background:var(--card); border:1px solid var(--border);
-      border-radius:var(--radius); padding:1rem 0.9rem;
+      border-radius:var(--radius); padding:0.85rem 0.75rem 1rem;
       text-align:center; transition:box-shadow 0.2s;
       position:relative; overflow:hidden;
+      display:flex; flex-direction:column; align-items:center;
     }
     .food-card:hover { box-shadow:var(--shadow-md); }
     .food-card .fc-top {
       position:absolute; top:0; left:0; right:0; height:4px; border-radius:var(--radius) var(--radius) 0 0;
     }
-    .food-card .emoji { font-size:1.85rem; margin-bottom:0.35rem; display:block; line-height:1; }
+    /* 食物圖片容器 */
+    .food-card .food-img-wrap {
+      width:72px; height:72px; border-radius:10px;
+      overflow:hidden; margin:0.3rem auto 0.55rem;
+      background:#f3f4f6; display:flex; align-items:center; justify-content:center;
+      flex-shrink:0;
+    }
+    .food-card .food-img-wrap img {
+      width:100%; height:100%; object-fit:cover; display:block;
+    }
+    .food-card .food-img-wrap .emoji-fallback {
+      font-size:2.4rem; line-height:1;
+    }
     .food-card .name  { font-size:0.82rem; font-weight:700; color:var(--text); margin-bottom:0.3rem; line-height:1.3; }
     .food-card .portion{
       font-size:1rem; font-weight:900; line-height:1.2; margin-bottom:0.2rem;
@@ -130,7 +144,7 @@
     /* ── 便利商店表格 ── */
     .cvs-table-wrap { overflow-x:auto; margin-top:1rem; }
     table.cvs {
-      width:100%; border-collapse:collapse; font-size:0.85rem; min-width:560px;
+      width:100%; border-collapse:collapse; font-size:0.85rem; min-width:400px;
     }
     table.cvs th {
       padding:0.55rem 0.75rem; text-align:center; font-weight:700;
@@ -184,6 +198,7 @@
 
     @media (max-width:480px) {
       .food-grid { grid-template-columns:repeat(auto-fill,minmax(108px,1fr)); gap:0.55rem; }
+      .food-card .food-img-wrap { width:60px; height:60px; }
     }
     @media print { .legend { position:static; } }
   </style>
@@ -201,17 +216,26 @@
 <div class="legend">
   <div class="legend-item">
     <div class="code-pill" style="background:var(--C);">C</div>
-    <span>主食 全榖雜糧類</span>
+    <div class="leg-text">
+      <span class="leg-en">Carbohydrate</span>
+      <span class="leg-zh">主食・全榖雜糧類</span>
+    </div>
   </div>
   <span class="legend-sep">｜</span>
   <div class="legend-item">
     <div class="code-pill" style="background:var(--P);">P</div>
-    <span>蛋白質 豆魚肉蛋類</span>
+    <div class="leg-text">
+      <span class="leg-en">Protein</span>
+      <span class="leg-zh">蛋白質・豆魚肉蛋奶類</span>
+    </div>
   </div>
   <span class="legend-sep">｜</span>
   <div class="legend-item">
     <div class="code-pill" style="background:var(--F);">F</div>
-    <span>水果類</span>
+    <div class="leg-text">
+      <span class="leg-en">Fruit</span>
+      <span class="leg-zh">水果類</span>
+    </div>
   </div>
   <span class="legend-sep">｜</span>
   <a href="#sec-c">→ C</a>
@@ -231,7 +255,7 @@
     <div class="sec-code" style="background:var(--C);">C</div>
     <div>
       <h2>主食 — 全榖雜糧類</h2>
-      <div class="sub">每份約含 15g 醣質 · 70 大卡　｜　每餐上限 2 份，每天至少 1 餐要有主食</div>
+      <div class="sub">Carbohydrate　｜　每份約含 15g 醣質 · 70 大卡</div>
     </div>
   </div>
 
@@ -245,28 +269,28 @@
   <div class="food-grid">
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🍚</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍚</span></div>
       <div class="name">白飯 / 糙米飯</div>
       <div class="portion" style="color:var(--C);">¼ 碗</div>
       <div class="sub">熟重約 50g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🥣</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🥣</span></div>
       <div class="name">粥 / 稀飯</div>
       <div class="portion" style="color:var(--C);">½ 碗</div>
       <div class="sub">熟重約 125g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🍙</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍙</span></div>
       <div class="name">壽司 / 飯糰</div>
       <div class="portion" style="color:var(--C);">½ 個</div>
       <div class="sub">約 40g 米飯</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🍘</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍳</span></div>
       <div class="name">炒飯 / 燴飯</div>
       <div class="portion" style="color:var(--C);">¼ 碗</div>
       <div class="sub">留意油量</div>
@@ -279,35 +303,35 @@
   <div class="food-grid">
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🍝</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍝</span></div>
       <div class="name">麵條（熟）</div>
       <div class="portion" style="color:var(--C);">½ 碗</div>
       <div class="sub">白麵、油麵、烏龍</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🍜</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍜</span></div>
       <div class="name">冬粉 / 米粉</div>
       <div class="portion" style="color:var(--C);">½ 碗</div>
       <div class="sub">熟重約 60g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🍝</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍝</span></div>
       <div class="name">通心粉（熟）</div>
       <div class="portion" style="color:var(--C);">½ 碗</div>
       <div class="sub">義大利麵同</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🥟</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🥟</span></div>
       <div class="name">水餃</div>
       <div class="portion" style="color:var(--C);">3–4 個</div>
       <div class="sub">約 30g 麵皮</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🫔</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🫔</span></div>
       <div class="name">春捲皮</div>
       <div class="portion" style="color:var(--C);">1.5 張</div>
       <div class="sub">約 30g</div>
@@ -319,51 +343,44 @@
   <div class="food-grid">
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🍞</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍞</span></div>
       <div class="name">薄片吐司</div>
       <div class="portion" style="color:var(--C);">1 片</div>
       <div class="sub">約 25–30g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🫓</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🫓</span></div>
       <div class="name">全麥吐司</div>
       <div class="portion" style="color:var(--C);">1 片</div>
       <div class="sub">約 25–30g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🥖</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🥖</span></div>
       <div class="name">市場饅頭</div>
       <div class="portion" style="color:var(--C);">¼ 個</div>
       <div class="sub">冷凍饅頭 ⅓ 個</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🥐</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🥐</span></div>
       <div class="name">法式長棍麵包</div>
       <div class="portion" style="color:var(--C);">1 小段</div>
       <div class="sub">約 30g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🌾</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🌾</span></div>
       <div class="name">燕麥片（乾）</div>
       <div class="portion" style="color:var(--C);">3 湯匙</div>
       <div class="sub">約 20g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🫘</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🫘</span></div>
       <div class="name">綠豆（熟）/ 五穀粉</div>
       <div class="portion" style="color:var(--C);">2 湯匙</div>
-      <div class="sub">約 20g</div>
-    </div>
-    <div class="food-card">
-      <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🍪</span>
-      <div class="name">蘇打餅乾</div>
-      <div class="portion" style="color:var(--C);">3 片</div>
       <div class="sub">約 20g</div>
     </div>
   </div>
@@ -373,42 +390,42 @@
   <div class="food-grid">
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🌽</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🌽</span></div>
       <div class="name">玉米</div>
       <div class="portion" style="color:var(--C);">食指長</div>
       <div class="sub">玉米粒 ¼ 碗</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🍠</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍠</span></div>
       <div class="name">地瓜 / 芋頭</div>
       <div class="portion" style="color:var(--C);">½ 碗</div>
       <div class="sub">熟約 55–70g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🎃</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🎃</span></div>
       <div class="name">南瓜</div>
       <div class="portion" style="color:var(--C);">½ 碗</div>
       <div class="sub">熟約 85g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🥔</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🥔</span></div>
       <div class="name">馬鈴薯</div>
       <div class="portion" style="color:var(--C);">½ 個（中）</div>
       <div class="sub">約 90g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🌿</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🌿</span></div>
       <div class="name">山藥</div>
       <div class="portion" style="color:var(--C);">1 段（中）</div>
       <div class="sub">約 80g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--C);"></div>
-      <span class="emoji">🌰</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🌰</span></div>
       <div class="name">栗子</div>
       <div class="portion" style="color:var(--C);">3 個</div>
       <div class="sub">約 30g</div>
@@ -428,8 +445,8 @@
   <div class="sec-header">
     <div class="sec-code" style="background:var(--P);">P</div>
     <div>
-      <h2>蛋白質 — 豆魚肉蛋類</h2>
-      <div class="sub">每份約 7g 蛋白質 · 75 大卡　｜　每餐建議 3–5 份</div>
+      <h2>蛋白質 — 豆魚肉蛋奶類</h2>
+      <div class="sub">Protein　｜　每份約 7g 蛋白質 · 75 大卡　｜　每餐建議 3–5 份</div>
     </div>
   </div>
 
@@ -438,61 +455,81 @@
     <div><strong>最快估量法：手掌一個大小≈ 3 份 P</strong>，或用 2 湯匙估 1 份。優先選擇低脂肉品（雞胸、魚、海鮮、蛋白），少選高油脂紅肉、加工肉品。</div>
   </div>
 
+  <!-- 奶類 -->
+  <div class="cat-label" style="color:var(--P);">🥛 奶類</div>
+  <div class="food-grid">
+    <div class="food-card">
+      <div class="fc-top" style="background:var(--P);"></div>
+      <div class="food-img-wrap"><span class="emoji-fallback">🥛</span></div>
+      <div class="name">全脂牛奶</div>
+      <div class="portion" style="color:var(--P);">150 mL</div>
+      <div class="sub">熱量較高</div>
+    </div>
+    <div class="food-card">
+      <div class="fc-top" style="background:var(--P);"></div>
+      <div class="food-img-wrap"><span class="emoji-fallback">🥛</span></div>
+      <div class="name">脫脂牛奶</div>
+      <div class="portion" style="color:var(--P);">240 mL</div>
+      <div class="sub">低脂首選</div>
+      <span class="tag" style="background:var(--F-light);color:var(--F);">低脂推薦</span>
+    </div>
+  </div>
+
   <!-- 肉魚 -->
   <div class="cat-label" style="color:var(--P);">🥩 肉、魚、海鮮（1 份 = 35g 生 / 30g 熟）</div>
   <div class="food-grid">
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">🥩</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🥩</span></div>
       <div class="name">瘦牛 / 豬肉</div>
       <div class="portion" style="color:var(--P);">1 份</div>
       <div class="sub">35g 生 / 30g 熟<br>約 2 湯匙碎肉</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">🍗</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍗</span></div>
       <div class="name">雞肉（去皮）</div>
       <div class="portion" style="color:var(--P);">1 份</div>
       <div class="sub">35g 生 / 30g 熟<br>手掌約 3 份</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">🐟</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🐟</span></div>
       <div class="name">魚片 / 魚排</div>
       <div class="portion" style="color:var(--P);">1 份</div>
       <div class="sub">35g 生 / 30g 熟</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">🍤</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍤</span></div>
       <div class="name">蝦（劍蝦）</div>
       <div class="portion" style="color:var(--P);">約 4 隻</div>
       <div class="sub">≈ 2 湯匙</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">🦪</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🦪</span></div>
       <div class="name">牡蠣 / 蛤蜊</div>
       <div class="portion" style="color:var(--P);">3 湯匙</div>
       <div class="sub">約 65g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">🦑</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🦑</span></div>
       <div class="name">花枝 / 透抽</div>
       <div class="portion" style="color:var(--P);">1 份</div>
       <div class="sub">35g 生</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">🦐</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🦐</span></div>
       <div class="name">海瓜子 / 文蛤</div>
       <div class="portion" style="color:var(--P);">2 湯匙</div>
       <div class="sub">去殼肉</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">🐙</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🐙</span></div>
       <div class="name">章魚 / 小卷</div>
       <div class="portion" style="color:var(--P);">1 份</div>
       <div class="sub">35g</div>
@@ -504,14 +541,14 @@
   <div class="food-grid">
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">🥚</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🥚</span></div>
       <div class="name">雞蛋（全蛋）</div>
       <div class="portion" style="color:var(--P);">1 顆</div>
       <div class="sub">約 55g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">🫕</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🫕</span></div>
       <div class="name">蛋白</div>
       <div class="portion" style="color:var(--P);">2 個</div>
       <div class="sub">低脂選擇</div>
@@ -519,7 +556,7 @@
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">🥚</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🥚</span></div>
       <div class="name">皮蛋 / 鹹蛋</div>
       <div class="portion" style="color:var(--P);">1 顆</div>
       <div class="sub">注意鈉含量</div>
@@ -528,65 +565,73 @@
   </div>
 
   <!-- 豆製品 -->
-  <div class="cat-label" style="color:var(--P);">🫘 豆製品</div>
+  <div class="cat-label" style="color:var(--P);">🫘 豆製品 & 毛豆</div>
   <div class="food-grid">
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">🥛</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🥛</span></div>
       <div class="name">豆漿（無糖）</div>
-      <div class="portion" style="color:var(--P);">240 c.c.</div>
+      <div class="portion" style="color:var(--P);">240 mL</div>
       <div class="sub">1 杯（無糖）</div>
       <span class="tag" style="background:var(--F-light);color:var(--F);">低脂推薦</span>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">🫆</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🫆</span></div>
       <div class="name">傳統豆腐</div>
       <div class="portion" style="color:var(--P);">2 小格</div>
       <div class="sub">約 80g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">🟦</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🟦</span></div>
       <div class="name">嫩豆腐</div>
       <div class="portion" style="color:var(--P);">半盒</div>
       <div class="sub">約 140g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">🧆</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🧆</span></div>
       <div class="name">三角油豆腐</div>
       <div class="portion" style="color:var(--P);">2 個</div>
       <div class="sub">約 55g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">🟫</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🟫</span></div>
       <div class="name">豆包</div>
       <div class="portion" style="color:var(--P);">⅔ 個</div>
       <div class="sub">生豆包</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">⬛</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">⬛</span></div>
       <div class="name">黑豆干</div>
       <div class="portion" style="color:var(--P);">⅓ 塊</div>
       <div class="sub">約 35g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">🟤</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🟤</span></div>
       <div class="name">五香豆干</div>
       <div class="portion" style="color:var(--P);">1 片</div>
       <div class="sub">約 35g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--P);"></div>
-      <span class="emoji">🟧</span>
-      <div class="name">百頁豆腐</div>
-      <div class="portion" style="color:var(--P);">1.5 片</div>
-      <div class="sub">約 35g</div>
-      <span class="tag" style="background:var(--C-light);color:var(--C);">⚠ 高油</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🫛</span></div>
+      <div class="name">毛豆（帶殼）</div>
+      <div class="portion" style="color:var(--P);">約 ½ 碗</div>
+      <div class="sub">約 75g</div>
+      <span class="tag" style="background:var(--F-light);color:var(--F);">低脂推薦</span>
+    </div>
+    <div class="food-card">
+      <div class="fc-top" style="background:var(--P);"></div>
+      <div class="food-img-wrap"><span class="emoji-fallback">🟢</span></div>
+      <div class="name">毛豆（去殼）</div>
+      <div class="portion" style="color:var(--P);">約 50g</div>
+      <div class="sub">約 3 湯匙</div>
+      <span class="tag" style="background:var(--F-light);color:var(--F);">低脂推薦</span>
     </div>
   </div>
 
@@ -604,7 +649,7 @@
     <div class="sec-code" style="background:var(--F);">F</div>
     <div>
       <h2>水果 — 每份是</h2>
-      <div class="sub">切塊 8 分滿碗（拳頭大）= 1 份　｜　建議早午餐之間或下午茶時間單獨吃</div>
+      <div class="sub">Fruit　｜　切塊 8 分滿碗（拳頭大）= 1 份　｜　建議早午餐之間或下午茶時間單獨吃</div>
     </div>
   </div>
 
@@ -616,28 +661,28 @@
   <div class="food-grid">
     <div class="food-card">
       <div class="fc-top" style="background:var(--F);"></div>
-      <span class="emoji">🍎</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍎</span></div>
       <div class="name">蘋果</div>
       <div class="portion" style="color:var(--F);">1 個</div>
       <div class="sub">中等大小</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--F);"></div>
-      <span class="emoji">🍊</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍊</span></div>
       <div class="name">柳丁 / 橘子</div>
       <div class="portion" style="color:var(--F);">1 個</div>
       <div class="sub">中等大小</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--F);"></div>
-      <span class="emoji">🥝</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🥝</span></div>
       <div class="name">奇異果</div>
       <div class="portion" style="color:var(--F);">1.5 個</div>
       <div class="sub">黃金/綠色均可</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--F);"></div>
-      <span class="emoji">🍌</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍌</span></div>
       <div class="name">香蕉</div>
       <div class="portion" style="color:var(--F);">半根</div>
       <div class="sub">約 95g 果肉</div>
@@ -645,77 +690,77 @@
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--F);"></div>
-      <span class="emoji">🍇</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍇</span></div>
       <div class="name">葡萄</div>
       <div class="portion" style="color:var(--F);">約 13 顆</div>
       <div class="sub">含皮約 85g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--F);"></div>
-      <span class="emoji">🍅</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍅</span></div>
       <div class="name">小番茄</div>
       <div class="portion" style="color:var(--F);">約 13 顆</div>
       <div class="sub">聖女番茄</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--F);"></div>
-      <span class="emoji">🍐</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍐</span></div>
       <div class="name">蓮霧</div>
       <div class="portion" style="color:var(--F);">1.5–2 個</div>
       <div class="sub">中等大小</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--F);"></div>
-      <span class="emoji">🫐</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🫐</span></div>
       <div class="name">藍莓</div>
       <div class="portion" style="color:var(--F);">約 ¾ 碗</div>
       <div class="sub">約 80g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--F);"></div>
-      <span class="emoji">🍓</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍓</span></div>
       <div class="name">草莓</div>
       <div class="portion" style="color:var(--F);">約 8–9 顆</div>
       <div class="sub">中等大小</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--F);"></div>
-      <span class="emoji">🍑</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍑</span></div>
       <div class="name">水蜜桃 / 桃子</div>
       <div class="portion" style="color:var(--F);">1 個（小）</div>
       <div class="sub">約 150g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--F);"></div>
-      <span class="emoji">🍈</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍈</span></div>
       <div class="name">哈密瓜 / 香瓜</div>
       <div class="portion" style="color:var(--F);">切塊 8 分碗</div>
       <div class="sub">拳頭大</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--F);"></div>
-      <span class="emoji">🍍</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍍</span></div>
       <div class="name">鳳梨</div>
       <div class="portion" style="color:var(--F);">切塊 8 分碗</div>
       <div class="sub">約 130g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--F);"></div>
-      <span class="emoji">🍉</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍉</span></div>
       <div class="name">西瓜</div>
       <div class="portion" style="color:var(--F);">切塊 8 分碗</div>
       <div class="sub">約 180g（含皮）</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--F);"></div>
-      <span class="emoji">🍒</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍒</span></div>
       <div class="name">櫻桃</div>
       <div class="portion" style="color:var(--F);">約 9 顆</div>
       <div class="sub">約 80g</div>
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--F);"></div>
-      <span class="emoji">🥭</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🥭</span></div>
       <div class="name">芒果</div>
       <div class="portion" style="color:var(--F);">切塊 8 分碗</div>
       <div class="sub">約 100g 果肉</div>
@@ -723,7 +768,7 @@
     </div>
     <div class="food-card">
       <div class="fc-top" style="background:var(--F);"></div>
-      <span class="emoji">🫒</span>
+      <div class="food-img-wrap"><span class="emoji-fallback">🫒</span></div>
       <div class="name">百香果</div>
       <div class="portion" style="color:var(--F);">約 2 個</div>
       <div class="sub">含籽約 140g</div>
@@ -759,11 +804,9 @@
       <thead>
         <tr style="background:#f8fafc;">
           <th style="text-align:left;">類別</th>
-          <th style="text-align:left;">推薦品項</th>
+          <th style="text-align:left;">品項</th>
           <th><span style="color:var(--C);">C 主食</span></th>
           <th><span style="color:var(--P);">P 蛋白質</span></th>
-          <th>蔬菜</th>
-          <th>油脂</th>
         </tr>
       </thead>
       <tbody>
@@ -772,63 +815,35 @@
           <td class="item-col">石安牧場塘心蛋</td>
           <td><span class="pill-val" style="background:var(--C-light);color:var(--C);">2</span></td>
           <td><span class="pill-val" style="background:var(--P-light);color:var(--P);">1</span></td>
-          <td class="dash">—</td>
-          <td><span class="pill-val" style="background:#fafafa;">1</span></td>
         </tr>
         <tr>
           <td class="cat-col">三明治</td>
-          <td class="item-col">胚芽火腿 / 紐澳良烤雞 / 鮪魚塘心蛋</td>
+          <td class="item-col">紐澳良烤雞 / 鮪魚塘心蛋</td>
           <td><span class="pill-val" style="background:var(--C-light);color:var(--C);">2</span></td>
           <td><span class="pill-val" style="background:var(--P-light);color:var(--P);">1</span></td>
-          <td class="dash">—</td>
-          <td class="dash">—</td>
         </tr>
         <tr>
           <td class="cat-col">御飯糰</td>
           <td class="item-col">泡菜燒肉 / 明太子鱈魚子</td>
           <td><span class="pill-val" style="background:var(--C-light);color:var(--C);">2</span></td>
           <td><span class="pill-val" style="background:var(--P-light);color:var(--P);">0.5</span></td>
-          <td class="dash">—</td>
-          <td class="dash">—</td>
         </tr>
         <tr>
           <td class="cat-col">御飯糰</td>
           <td class="item-col">紅鮭 / 龍蝦沙拉 / 鮪魚 / 鹽烤豬肉 / 雞肉飯</td>
           <td><span class="pill-val" style="background:var(--C-light);color:var(--C);">2</span></td>
           <td><span class="pill-val" style="background:var(--P-light);color:var(--P);">0.5</span></td>
-          <td class="dash">—</td>
-          <td class="dash">—</td>
         </tr>
         <tr>
           <td class="cat-col">關東煮</td>
-          <td class="item-col">水煮蛋、油豆腐、百頁豆腐</td>
+          <td class="item-col">水煮蛋、油豆腐</td>
           <td class="dash">—</td>
           <td><span class="pill-val" style="background:var(--P-light);color:var(--P);">隨意</span></td>
-          <td class="dash">—</td>
-          <td class="dash">—</td>
-        </tr>
-        <tr>
-          <td class="cat-col">關東煮</td>
-          <td class="item-col">蘿蔔、香菇、竹筍、海帶</td>
-          <td class="dash">—</td>
-          <td class="dash">—</td>
-          <td><span class="pill-val" style="background:var(--F-light);color:var(--F);">隨意</span></td>
-          <td class="dash">—</td>
-        </tr>
-        <tr>
-          <td class="cat-col">沙拉</td>
-          <td class="item-col">十二鮮蔬 + 中華油醋醬</td>
-          <td class="dash">—</td>
-          <td class="dash">—</td>
-          <td><span class="pill-val" style="background:var(--F-light);color:var(--F);">1.5</span></td>
-          <td><span class="pill-val" style="background:#fafafa;">1</span></td>
         </tr>
         <tr>
           <td class="cat-col">沙拉</td>
           <td class="item-col">五色沙拉 / 和風海藻 / 陽光番茄</td>
           <td class="dash">—</td>
-          <td class="dash">—</td>
-          <td><span class="pill-val" style="background:var(--F-light);color:var(--F);">1</span></td>
           <td class="dash">—</td>
         </tr>
         <tr>
@@ -836,24 +851,6 @@
           <td class="item-col">和風醬（推薦）</td>
           <td class="dash">—</td>
           <td class="dash">—</td>
-          <td class="dash">—</td>
-          <td><span class="pill-val" style="background:var(--F-light);color:var(--F);">低</span></td>
-        </tr>
-        <tr>
-          <td class="cat-col">醬料</td>
-          <td class="item-col">中華油醋醬</td>
-          <td class="dash">—</td>
-          <td class="dash">—</td>
-          <td class="dash">—</td>
-          <td><span class="pill-val" style="background:#fafafa;">1</span></td>
-        </tr>
-        <tr>
-          <td class="cat-col" style="color:var(--P);">醬料</td>
-          <td class="item-col" style="color:#991b1b;">千島醬（避免）</td>
-          <td class="dash">—</td>
-          <td class="dash">—</td>
-          <td class="dash">—</td>
-          <td><span class="pill-val" style="background:#fdecea;color:var(--P);">高</span></td>
         </tr>
       </tbody>
     </table>
@@ -865,14 +862,6 @@
     <div class="pick-card" style="border-top:3px solid var(--F);">
       <div class="pk-label">推薦</div>
       <div class="pk-name">石安牧場塘心蛋</div>
-      <div class="pk-tags">
-        <span class="pk-tag" style="background:var(--C-light);color:var(--C);">C ×2</span>
-        <span class="pk-tag" style="background:var(--P-light);color:var(--P);">P ×1</span>
-      </div>
-    </div>
-    <div class="pick-card" style="border-top:3px solid var(--F);">
-      <div class="pk-label">推薦</div>
-      <div class="pk-name">胚芽火腿</div>
       <div class="pk-tags">
         <span class="pk-tag" style="background:var(--C-light);color:var(--C);">C ×2</span>
         <span class="pk-tag" style="background:var(--P-light);color:var(--P);">P ×1</span>

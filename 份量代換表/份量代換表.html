@@ -53,18 +53,18 @@
     }
     .legend-item {
       display:flex; align-items:center; gap:0.45rem;
-      font-size:0.82rem;
+      font-size:0.82rem; text-decoration:none; color:var(--text);
+      transition:opacity 0.15s;
     }
+    .legend-item:hover { opacity:0.72; }
     .legend-item .code-pill {
       width:26px; height:26px; border-radius:50%;
       display:flex; align-items:center; justify-content:center;
       font-size:0.8rem; font-weight:900; color:#fff; flex-shrink:0;
     }
     .legend-item .leg-text { line-height:1.25; }
-    .legend-item .leg-en { font-size:0.68rem; color:var(--muted); font-style:italic; display:block; }
-    .legend-item .leg-zh { font-weight:700; display:block; font-size:0.8rem; }
-    .legend a { color:var(--muted); text-decoration:none; font-size:0.8rem; font-weight:600; }
-    .legend a:hover { color:var(--neutral); }
+    .legend-item .leg-zh { font-weight:700; display:block; font-size:0.82rem; }
+    .legend-item .leg-en { font-size:0.66rem; color:var(--muted); font-style:italic; display:block; }
     .legend-sep { color:var(--border); font-size:1.1rem; }
 
     /* ── 版面 ── */
@@ -243,34 +243,29 @@
 
 <!-- ── 浮動代碼圖例 ── -->
 <div class="legend">
-  <div class="legend-item">
+  <a href="#sec-c" class="legend-item">
     <div class="code-pill" style="background:var(--C);">C</div>
     <div class="leg-text">
-      <span class="leg-en">Carbohydrate</span>
       <span class="leg-zh">主食・全榖雜糧類</span>
+      <span class="leg-en">Carbohydrate</span>
     </div>
-  </div>
+  </a>
   <span class="legend-sep">｜</span>
-  <div class="legend-item">
+  <a href="#sec-p" class="legend-item">
     <div class="code-pill" style="background:var(--P);">P</div>
     <div class="leg-text">
-      <span class="leg-en">Protein</span>
       <span class="leg-zh">蛋白質・豆魚肉蛋奶類</span>
+      <span class="leg-en">Protein</span>
     </div>
-  </div>
+  </a>
   <span class="legend-sep">｜</span>
-  <div class="legend-item">
+  <a href="#sec-f" class="legend-item">
     <div class="code-pill" style="background:var(--F);">F</div>
     <div class="leg-text">
-      <span class="leg-en">Fruit</span>
       <span class="leg-zh">水果類</span>
+      <span class="leg-en">Fruit</span>
     </div>
-  </div>
-  <span class="legend-sep">｜</span>
-  <a href="#sec-c">→ C</a>
-  <a href="#sec-p">→ P</a>
-  <a href="#sec-f">→ F</a>
-  <a href="#sec-cvs">→ 便利商店</a>
+  </a>
 </div>
 
 
@@ -476,39 +471,39 @@
 
       <!-- SVG 手掌示意圖 -->
       <div class="hand-svg-wrap">
-        <svg viewBox="0 0 200 275" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 220 320" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <style>
-              .hf { fill:#FDDCB5; stroke:#d4845a; stroke-width:1.8; }
-              .dl { stroke:#E74C3C; stroke-width:2.2; stroke-dasharray:5,3.5; fill:none; opacity:0.9; }
-              .pl { fill:#C0392B; font-size:17px; font-weight:900; font-family:'Noto Sans TC',Arial,sans-serif; }
-              .tl { fill:#1A1A2E; font-size:11.5px; font-weight:700; font-family:'Noto Sans TC',Arial,sans-serif; }
+              .hf { fill:#FDDCB5; stroke:#c8845a; stroke-width:1.8; }
+              .dl { stroke:#E74C3C; stroke-width:2.2; stroke-dasharray:5,3.5; fill:none; opacity:0.88; }
+              .pl { fill:#C0392B; font-weight:900; font-family:'Noto Sans TC',Arial,sans-serif; }
+              .tl { fill:#555; font-family:'Noto Sans TC',Arial,sans-serif; font-weight:700; }
             </style>
           </defs>
           <!-- 拇指 -->
-          <path class="hf" d="M42 145 Q22 136 20 112 Q18 88 36 82 Q50 78 54 95 L54 148 Z"/>
-          <!-- 食指 -->
-          <rect class="hf" x="54" y="22" width="29" height="84" rx="13"/>
-          <!-- 中指 -->
-          <rect class="hf" x="87" y="6" width="29" height="100" rx="13"/>
-          <!-- 無名指 -->
-          <rect class="hf" x="120" y="12" width="28" height="94" rx="13"/>
-          <!-- 小指 -->
-          <rect class="hf" x="152" y="32" width="24" height="74" rx="11"/>
+          <path class="hf" d="M44 162 Q23 152 21 124 Q19 95 40 87 Q56 82 60 100 L60 165 Z"/>
+          <!-- 食指 (x=54-84, y=22-115) -->
+          <rect class="hf" x="54" y="22" width="30" height="93" rx="14"/>
+          <!-- 中指 (x=88-118, y=6-115) -->
+          <rect class="hf" x="88" y="6" width="30" height="109" rx="14"/>
+          <!-- 無名指 (x=122-150, y=12-115) -->
+          <rect class="hf" x="122" y="12" width="28" height="103" rx="13"/>
+          <!-- 小指 (x=154-178, y=40-115) -->
+          <rect class="hf" x="154" y="40" width="24" height="75" rx="11"/>
           <!-- 手掌 -->
-          <path class="hf" d="M54 98 L176 98 Q190 98 190 116 L190 226 Q190 242 174 244 L62 244 Q46 244 44 228 L42 148 L54 148 Z"/>
-          <!-- 分割線：橫向（手指與手掌之間） -->
-          <line class="dl" x1="42" y1="98" x2="190" y2="98"/>
-          <!-- 分割線：縱向貫穿全手（食中 vs 無名小指 | 手掌左右） -->
-          <line class="dl" x1="116" y1="6" x2="116" y2="98"/>
-          <line class="dl" x1="116" y1="98" x2="116" y2="244"/>
-          <!-- 四格標籤 -->
-          <text class="pl" x="84"  y="62" text-anchor="middle">1P</text>
-          <text class="pl" x="154" y="62" text-anchor="middle">1P</text>
-          <text class="pl" x="75"  y="182" text-anchor="middle">1P</text>
-          <text class="pl" x="154" y="182" text-anchor="middle">1P</text>
+          <path class="hf" d="M54 112 L178 112 Q198 112 198 130 L198 256 Q198 274 180 276 L66 276 Q48 276 46 258 L44 164 L60 164 L60 112 Z"/>
+          <!-- 分割線：手指與手掌之間（橫向） -->
+          <line class="dl" x1="44" y1="112" x2="198" y2="112"/>
+          <!-- 分割線：食中指 vs 無名小指（縱向，僅手指段） -->
+          <line class="dl" x1="120" y1="6" x2="120" y2="112"/>
+          <!-- 1P 標籤：左手指（食指＋中指） -->
+          <text class="pl" font-size="18" x="86"  y="66" text-anchor="middle">1P</text>
+          <!-- 1P 標籤：右手指（無名指＋小指） -->
+          <text class="pl" font-size="18" x="156" y="66" text-anchor="middle">1P</text>
+          <!-- 2P 標籤：整個手掌心（無縱線） -->
+          <text class="pl" font-size="24" x="122" y="202" text-anchor="middle">2P</text>
           <!-- 底部總計 -->
-          <text class="tl" x="116" y="263" text-anchor="middle">整手 ＝ 4P</text>
+          <text class="tl" font-size="12" x="122" y="298" text-anchor="middle">整手 ＝ 4P</text>
         </svg>
       </div>
 
@@ -517,28 +512,21 @@
         <h4>✋ 手掌快速估量法</h4>
         <div class="hand-note">
           <span class="hn-em">🖐</span>
-          <div><strong>整個手（含手指）＝ 4 份 P</strong>，一般人標準</div>
+          <div>
+            <strong>整個手（含手指）＝ 4 份 P</strong><br>
+            <span style="color:var(--muted);font-size:0.78rem;">(很大的手 5P，很小的手 3P)</span>
+          </div>
         </div>
         <div class="hand-note">
           <span class="hn-em">☝</span>
-          <div><strong>兩根手指 ＝ 1 份 P</strong><br><span style="color:var(--muted);font-size:0.8rem;">（4 根手指合計 ＝ 2P）</span></div>
+          <div><strong>兩根手指 ＝ 1 份 P</strong></div>
         </div>
         <div class="hand-note">
           <span class="hn-em">🤲</span>
           <div><strong>手掌心（不含手指）＝ 2 份 P</strong></div>
         </div>
-        <div class="hand-gender">
-          <div class="gender-chip">
-            <span class="gc-icon">👨</span>
-            男生手較大<br><strong>約 5 份 P</strong>
-          </div>
-          <div class="gender-chip">
-            <span class="gc-icon">👩</span>
-            女生手很小<br><strong>約 3 份 P</strong>
-          </div>
-        </div>
-        <div style="margin-top:0.75rem; font-size:0.8rem; color:var(--muted); line-height:1.5;">
-          💡 優先選擇低脂肉品（雞胸、魚、海鮮、蛋白），少選高油脂紅肉與加工肉品。
+        <div style="margin-top:0.75rem; font-size:0.8rem; color:var(--muted); line-height:1.6;">
+          💡 優先選擇低脂肉品(如雞胸、魚、海鮮、里肌肉、板腱牛)，少選高油脂肉品如五花肉與加工肉品如香腸、丸餃類火鍋料。
         </div>
       </div>
 

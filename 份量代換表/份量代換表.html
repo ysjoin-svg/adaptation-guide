@@ -182,6 +182,35 @@
       font-size:0.65rem; font-weight:700; padding:0.1rem 0.45rem; border-radius:99px;
     }
 
+    /* ── 手掌估量圖 ── */
+    .hand-diagram-card {
+      background:var(--P-light); border:1px solid var(--P-mid);
+      border-radius:var(--radius); padding:1.25rem 1.35rem;
+      margin-bottom:1.25rem;
+    }
+    .hand-diagram-inner {
+      display:flex; gap:1.5rem; align-items:flex-start; flex-wrap:wrap;
+    }
+    .hand-svg-wrap { width:140px; flex-shrink:0; }
+    .hand-svg-wrap svg { width:100%; height:auto; display:block; }
+    .hand-notes { flex:1; min-width:180px; }
+    .hand-notes h4 { font-size:0.95rem; font-weight:900; margin-bottom:0.75rem; color:var(--P); }
+    .hand-note {
+      display:flex; align-items:flex-start; gap:0.55rem;
+      font-size:0.875rem; margin-bottom:0.55rem; line-height:1.45;
+    }
+    .hand-note .hn-em { font-size:1.05rem; flex-shrink:0; }
+    .hand-gender {
+      display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;
+      margin-top:0.85rem;
+    }
+    .gender-chip {
+      background:#fff; border-radius:8px; padding:0.5rem 0.65rem;
+      font-size:0.82rem; text-align:center; border:1px solid var(--P-mid);
+    }
+    .gender-chip .gc-icon { font-size:1.1rem; display:block; margin-bottom:0.15rem; }
+    .gender-chip strong { color:var(--P); }
+
     /* ── 警告框 ── */
     .warn-box {
       border-radius:var(--radius-sm); padding:0.9rem 1.1rem;
@@ -287,14 +316,6 @@
       <div class="name">壽司 / 飯糰</div>
       <div class="portion" style="color:var(--C);">½ 個</div>
       <div class="sub">約 40g 米飯</div>
-    </div>
-    <div class="food-card">
-      <div class="fc-top" style="background:var(--C);"></div>
-      <div class="food-img-wrap"><span class="emoji-fallback">🍳</span></div>
-      <div class="name">炒飯 / 燴飯</div>
-      <div class="portion" style="color:var(--C);">¼ 碗</div>
-      <div class="sub">留意油量</div>
-      <span class="tag" style="background:var(--C-light);color:var(--C);">⚠ 留意油</span>
     </div>
   </div>
 
@@ -450,9 +471,78 @@
     </div>
   </div>
 
-  <div class="rule-card" style="background:var(--P-light); border:1px solid var(--P-mid);">
-    <span class="ri">✋</span>
-    <div><strong>最快估量法：手掌一個大小≈ 3 份 P</strong>，或用 2 湯匙估 1 份。優先選擇低脂肉品（雞胸、魚、海鮮、蛋白），少選高油脂紅肉、加工肉品。</div>
+  <div class="hand-diagram-card">
+    <div class="hand-diagram-inner">
+
+      <!-- SVG 手掌示意圖 -->
+      <div class="hand-svg-wrap">
+        <svg viewBox="0 0 200 275" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <style>
+              .hf { fill:#FDDCB5; stroke:#d4845a; stroke-width:1.8; }
+              .dl { stroke:#E74C3C; stroke-width:2.2; stroke-dasharray:5,3.5; fill:none; opacity:0.9; }
+              .pl { fill:#C0392B; font-size:17px; font-weight:900; font-family:'Noto Sans TC',Arial,sans-serif; }
+              .tl { fill:#1A1A2E; font-size:11.5px; font-weight:700; font-family:'Noto Sans TC',Arial,sans-serif; }
+            </style>
+          </defs>
+          <!-- 拇指 -->
+          <path class="hf" d="M42 145 Q22 136 20 112 Q18 88 36 82 Q50 78 54 95 L54 148 Z"/>
+          <!-- 食指 -->
+          <rect class="hf" x="54" y="22" width="29" height="84" rx="13"/>
+          <!-- 中指 -->
+          <rect class="hf" x="87" y="6" width="29" height="100" rx="13"/>
+          <!-- 無名指 -->
+          <rect class="hf" x="120" y="12" width="28" height="94" rx="13"/>
+          <!-- 小指 -->
+          <rect class="hf" x="152" y="32" width="24" height="74" rx="11"/>
+          <!-- 手掌 -->
+          <path class="hf" d="M54 98 L176 98 Q190 98 190 116 L190 226 Q190 242 174 244 L62 244 Q46 244 44 228 L42 148 L54 148 Z"/>
+          <!-- 分割線：橫向（手指與手掌之間） -->
+          <line class="dl" x1="42" y1="98" x2="190" y2="98"/>
+          <!-- 分割線：縱向貫穿全手（食中 vs 無名小指 | 手掌左右） -->
+          <line class="dl" x1="116" y1="6" x2="116" y2="98"/>
+          <line class="dl" x1="116" y1="98" x2="116" y2="244"/>
+          <!-- 四格標籤 -->
+          <text class="pl" x="84"  y="62" text-anchor="middle">1P</text>
+          <text class="pl" x="154" y="62" text-anchor="middle">1P</text>
+          <text class="pl" x="75"  y="182" text-anchor="middle">1P</text>
+          <text class="pl" x="154" y="182" text-anchor="middle">1P</text>
+          <!-- 底部總計 -->
+          <text class="tl" x="116" y="263" text-anchor="middle">整手 ＝ 4P</text>
+        </svg>
+      </div>
+
+      <!-- 說明文字 -->
+      <div class="hand-notes">
+        <h4>✋ 手掌快速估量法</h4>
+        <div class="hand-note">
+          <span class="hn-em">🖐</span>
+          <div><strong>整個手（含手指）＝ 4 份 P</strong>，一般人標準</div>
+        </div>
+        <div class="hand-note">
+          <span class="hn-em">☝</span>
+          <div><strong>兩根手指 ＝ 1 份 P</strong><br><span style="color:var(--muted);font-size:0.8rem;">（4 根手指合計 ＝ 2P）</span></div>
+        </div>
+        <div class="hand-note">
+          <span class="hn-em">🤲</span>
+          <div><strong>手掌心（不含手指）＝ 2 份 P</strong></div>
+        </div>
+        <div class="hand-gender">
+          <div class="gender-chip">
+            <span class="gc-icon">👨</span>
+            男生手較大<br><strong>約 5 份 P</strong>
+          </div>
+          <div class="gender-chip">
+            <span class="gc-icon">👩</span>
+            女生手很小<br><strong>約 3 份 P</strong>
+          </div>
+        </div>
+        <div style="margin-top:0.75rem; font-size:0.8rem; color:var(--muted); line-height:1.5;">
+          💡 優先選擇低脂肉品（雞胸、魚、海鮮、蛋白），少選高油脂紅肉與加工肉品。
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <!-- 奶類 -->
@@ -534,6 +624,36 @@
       <div class="portion" style="color:var(--P);">1 份</div>
       <div class="sub">35g</div>
     </div>
+  </div>
+
+  <!-- 帶骨雞肉 -->
+  <div class="cat-label" style="color:var(--P);">🍗 帶骨雞肉（去骨後估算）</div>
+  <div class="food-grid">
+    <div class="food-card">
+      <div class="fc-top" style="background:var(--P);"></div>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍗</span></div>
+      <div class="name">雞棒棒腿</div>
+      <div class="portion" style="color:var(--P);">約 2 份 P</div>
+      <div class="sub">去骨肉約 60g<br>1 支</div>
+    </div>
+    <div class="food-card">
+      <div class="fc-top" style="background:var(--P);"></div>
+      <div class="food-img-wrap"><span class="emoji-fallback">🍖</span></div>
+      <div class="name">L 骨腿 / 大雞腿</div>
+      <div class="portion" style="color:var(--P);">約 3–4 份 P</div>
+      <div class="sub">去骨肉約 100–120g<br>1 支</div>
+    </div>
+    <div class="food-card">
+      <div class="fc-top" style="background:var(--P);"></div>
+      <div class="food-img-wrap"><span class="emoji-fallback">🥩</span></div>
+      <div class="name">雞排（便當）</div>
+      <div class="portion" style="color:var(--P);">約 4–5 份 P</div>
+      <div class="sub">肉約 140–160g<br>尺寸差異大</div>
+    </div>
+  </div>
+  <div class="rule-card" style="background:#fff8f0; border:1px solid #fddcb5; margin-top:0.5rem; font-size:0.85rem;">
+    <span class="ri">💡</span>
+    <span>帶骨部位以<strong>去骨後的肉量</strong>估算份數：骨重約占整體 30–40%。棒棒腿較精瘦，L 骨腿皮脂較多，雞排大小差異最大，建議搭配手掌法確認。</span>
   </div>
 
   <!-- 蛋 -->

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="真實學員的體重管理成果案例，包含體重、體脂率、肌肉率、血液數值的前後對比數據。">
+  <title>成果案例 | 科學體重管理師</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .results-section { background: var(--bg); padding: 4.5rem 0; }
+
+    .case-meta {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.25rem;
+    }
+    .case-meta .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      padding: 0.2rem 0.7rem;
+      border-radius: 99px;
+      font-size: 0.78rem;
+    }
+
+    .chart-wrap {
+      padding: 1.75rem;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+    .chart-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+
+    /* 統計摘要列 */
+    .results-summary {
+      background: linear-gradient(135deg, #0a1f4d, var(--primary));
+      color: #fff;
+      padding: 4rem 0;
+    }
+    .results-summary h2 { color: #fff; text-align: center; margin-bottom: 2.5rem; }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .summary-stat .num {
+      font-family: 'Inter';
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #6EE7B7;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .summary-stat .label { font-size: 0.88rem; color: rgba(255,255,255,0.72); }
+
+    .cta-section {
+      background: var(--accent);
+      color: #fff;
+      text-align: center;
+      padding: 4.5rem 0;
+    }
+    .cta-section h2 { color: #fff; margin-bottom: 0.75rem; }
+    .cta-section p  { color: rgba(255,255,255,0.82); margin-bottom: 2rem; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="navbar-brand"><img src="logo.jpg" alt="科學體重管理師" class="navbar-logo"><span>科學體重管理師</span></a>
+    <button class="hamburger" id="hamburger" aria-label="開啟選單"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="about.html">關於我</a></li>
+      <li><a href="services.html">服務內容</a></li>
+      <li><a href="results.html">成果案例</a></li>
+      <li><a href="faq.html">常見問題</a></li>
+      <li><a href="contact.html" class="nav-cta">立即諮詢</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-banner">
+  <div class="container">
+    <h1>成果案例</h1>
+    <p>真實數字，真實改變 — 每一位學員的進步都有數據為證</p>
+  </div>
+</div>
+
+<!-- ===== 統計摘要 ===== -->
+<section class="results-summary">
+  <div class="container">
+    <h2>整體成果統計</h2>
+    <div class="summary-grid">
+      <div class="summary-stat" data-reveal>
+        <div class="num"><span data-target="120" data-suffix="+">0+</span></div>
+        <div class="label">服務學員總數</div>
+      </div>
+      <div class="summary-stat" data-reveal>
+        <div class="num"><span data-target="5.8" data-decimal="1" data-suffix=" kg">0 kg</span></div>
+        <div class="label">平均減脂量（12週）</div>
+      </div>
+      <div class="summary-stat" data-reveal>
+        <div class="num"><span data-target="4.2" data-decimal="1" data-suffix="%">0%</span></div>
+        <div class="label">平均體脂率下降</div>
+      </div>
+      <div class="summary-stat" data-reveal>
+        <div class="num"><span data-target="88" data-suffix="%">0%</span></div>
+        <div class="label">血液數值改善率</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 成果案例 ===== -->
+<section class="results-section">
+  <div class="container">
+
+    <!-- 案例 A -->
+    <div class="result-card" data-reveal>
+      <div class="result-card-header">
+        <div>
+          <h3>學員 A</h3>
+          <div class="case-meta">
+            <span class="tag"><i class="bi bi-gender-female"></i> 女性</span>
+            <span class="tag"><i class="bi bi-person"></i> 37 歲</span>
+            <span class="tag"><i class="bi bi-calendar3"></i> 追蹤 12 週</span>
+            <span class="tag"><i class="bi bi-briefcase"></i> 上班族</span>
+          </div>
+        </div>
+        <div class="result-badge">主訴：體重反彈 / 體脂偏高</div>
+      </div>
+      <table class="result-table">
+        <thead>
+          <tr>
+            <th>指標</th>
+            <th>開始</th>
+            <th>12 週後</th>
+            <th>變化</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>體重</td><td class="num">85.2 kg</td><td class="num">78.1 kg</td><td class="change-neg num">−7.1 kg</td></tr>
+          <tr><td>體脂率</td><td class="num">32.4%</td><td class="num">26.8%</td><td class="change-neg num">−5.6%</td></tr>
+          <tr><td>肌肉率</td><td class="num">55.2%</td><td class="num">60.1%</td><td class="change-pos num">+4.9%</td></tr>
+          <tr><td>內臟脂肪</td><td class="num">14</td><td class="num">10</td><td class="change-neg num">−4</td></tr>
+          <tr><td>BMI</td><td class="num">29.1</td><td class="num">26.7</td><td class="change-neg num">−2.4</td></tr>
+          <tr><td>基礎代謝率</td><td class="num">1,388 kcal</td><td class="num">1,456 kcal</td><td class="change-pos num">+68 kcal</td></tr>
+        </tbody>
+      </table>
+      <div class="chart-wrap">
+        <div class="chart-title">體重 & 體脂率 週趨勢</div>
+        <canvas id="chartA" height="120"></canvas>
+      </div>
+      <div class="result-quote">
+        「以前每次節食都痛苦，而且一停就反彈。這次完全不同，老師教我怎麼吃得對，不是吃得少，結果肌肉沒有流失，體脂居然降了將近 6%！現在精神也好很多。」
+      </div>
+    </div>
+
+    <!-- 案例 B -->
+    <div class="result-card" data-reveal>
+      <div class="result-card-header">
+        <div>
+          <h3>學員 B</h3>
+          <div class="case-meta">
+            <span class="tag"><i class="bi bi-gender-male"></i> 男性</span>
+            <span class="tag"><i class="bi bi-person"></i> 42 歲</span>
+            <span class="tag"><i class="bi bi-calendar3"></i> 追蹤 16 週</span>
+            <span class="tag"><i class="bi bi-briefcase"></i> 業務主管</span>
+          </div>
+        </div>
+        <div class="result-badge">主訴：體檢紅字 / 代謝症候群</div>
+      </div>
+      <table class="result-table">
+        <thead>
+          <tr>
+            <th>指標</th>
+            <th>開始</th>
+            <th>16 週後</th>
+            <th>變化</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>體重</td><td class="num">96.5 kg</td><td class="num">87.2 kg</td><td class="change-neg num">−9.3 kg</td></tr>
+          <tr><td>體脂率</td><td class="num">35.1%</td><td class="num">27.9%</td><td class="change-neg num">−7.2%</td></tr>
+          <tr><td>內臟脂肪</td><td class="num">18</td><td class="num">12</td><td class="change-neg num">−6</td></tr>
+          <tr><td>空腹血糖</td><td class="num">116 mg/dL</td><td class="num">98 mg/dL</td><td class="change-neg num">−18 mg/dL</td></tr>
+          <tr><td>三酸甘油酯</td><td class="num">190 mg/dL</td><td class="num">132 mg/dL</td><td class="change-neg num">−58 mg/dL</td></tr>
+          <tr><td>LDL 膽固醇</td><td class="num">140 mg/dL</td><td class="num">118 mg/dL</td><td class="change-neg num">−22 mg/dL</td></tr>
+        </tbody>
+      </table>
+      <div class="result-quote">
+        「體檢報告紅字出來我很緊張，但不知道從哪裡改起。老師幫我把每個數值都解釋清楚，然後告訴我飲食要怎麼調整。16週後複檢，血糖、血脂全部回到正常範圍，醫生也說不用吃藥了！」
+      </div>
+    </div>
+
+    <!-- 案例 C -->
+    <div class="result-card" data-reveal>
+      <div class="result-card-header">
+        <div>
+          <h3>學員 C</h3>
+          <div class="case-meta">
+            <span class="tag"><i class="bi bi-gender-male"></i> 男性</span>
+            <span class="tag"><i class="bi bi-person"></i> 29 歲</span>
+            <span class="tag"><i class="bi bi-calendar3"></i> 追蹤 8 週</span>
+            <span class="tag"><i class="bi bi-heart-pulse"></i> 健身愛好者</span>
+          </div>
+        </div>
+        <div class="result-badge">主訴：健身停滯 / 體脂不降</div>
+      </div>
+      <table class="result-table">
+        <thead>
+          <tr>
+            <th>指標</th>
+            <th>開始</th>
+            <th>8 週後</th>
+            <th>變化</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>體重</td><td class="num">78.3 kg</td><td class="num">76.1 kg</td><td class="change-neg num">−2.2 kg</td></tr>
+          <tr><td>體脂率</td><td class="num">28.2%</td><td class="num">23.6%</td><td class="change-neg num">−4.6%</td></tr>
+          <tr><td>肌肉率</td><td class="num">58.9%</td><td class="num">63.8%</td><td class="change-pos num">+4.9%</td></tr>
+          <tr><td>肌肉量</td><td class="num">46.1 kg</td><td class="num">48.6 kg</td><td class="change-pos num">+2.5 kg</td></tr>
+          <tr><td>內臟脂肪</td><td class="num">9</td><td class="num">6</td><td class="change-neg num">−3</td></tr>
+        </tbody>
+      </table>
+      <div class="result-quote">
+        「運動三年了，體脂一直卡在28%降不下去，以為自己運動量不夠。後來才發現是飲食的蛋白質攝取嚴重不足，調整份量後8週就突破停滯期，體脂降到23%！」
+      </div>
+    </div>
+
+    <!-- 案例 D -->
+    <div class="result-card" data-reveal>
+      <div class="result-card-header">
+        <div>
+          <h3>學員 D</h3>
+          <div class="case-meta">
+            <span class="tag"><i class="bi bi-gender-female"></i> 女性</span>
+            <span class="tag"><i class="bi bi-person"></i> 51 歲</span>
+            <span class="tag"><i class="bi bi-calendar3"></i> 追蹤 20 週</span>
+            <span class="tag"><i class="bi bi-house"></i> 家管</span>
+          </div>
+        </div>
+        <div class="result-badge">主訴：更年期後體重增加 / 尿酸偏高</div>
+      </div>
+      <table class="result-table">
+        <thead>
+          <tr>
+            <th>指標</th>
+            <th>開始</th>
+            <th>20 週後</th>
+            <th>變化</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>體重</td><td class="num">72.1 kg</td><td class="num">64.8 kg</td><td class="change-neg num">−7.3 kg</td></tr>
+          <tr><td>體脂率</td><td class="num">38.5%</td><td class="num">31.2%</td><td class="change-neg num">−7.3%</td></tr>
+          <tr><td>肌肉率</td><td class="num">50.1%</td><td class="num">56.8%</td><td class="change-pos num">+6.7%</td></tr>
+          <tr><td>尿酸</td><td class="num">7.8 mg/dL</td><td class="num">5.9 mg/dL</td><td class="change-neg num">−1.9 mg/dL</td></tr>
+          <tr><td>BMI</td><td class="num">27.8</td><td class="num">24.9</td><td class="change-neg num">−2.9</td></tr>
+        </tbody>
+      </table>
+      <div class="result-quote">
+        「更年期後體重一直往上爬，試了好多方法都沒用。老師了解我的狀況後，設計了適合我年紀和生活型態的計劃，20週後不只體重降了，尿酸也回到正常值，膝蓋也輕鬆很多。」
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="container" data-reveal>
+    <h2>我也想開始改變</h2>
+    <p>你的故事可以從今天開始寫，第一步是一次免費諮詢。</p>
+    <a href="contact.html" class="btn btn-outline-white btn-lg">
+      <i class="bi bi-calendar-check"></i> 立即預約免費諮詢
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo"><img src="logo.jpg" alt="科學體重管理師" class="footer-logo-img"> 科學體重管理師</a>
+        <p>科學數據 × 個人化計劃 × 長期陪伴，幫助你找回代謝平衡。</p>
+      </div>
+      <div class="footer-links">
+        <h4>快速連結</h4>
+        <ul>
+          <li><a href="about.html">關於我</a></li>
+          <li><a href="services.html">服務內容</a></li>
+          <li><a href="results.html">成果案例</a></li>
+          <li><a href="faq.html">常見問題</a></li>
+          <li><a href="contact.html">聯絡報名</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>聯絡方式</h4>
+        <p><i class="bi bi-line"></i> LINE：@fqc1848m</p>
+
+        <p><i class="bi bi-geo-alt"></i> 線上全球皆可 / 實體高雄</p>
+        <div style="margin-top:0.85rem;">
+          <img src="qrcode.jpg" alt="掃描加入 LINE @fqc1848m" style="width:88px;height:88px;object-fit:contain;background:#fff;border-radius:6px;padding:4px;display:block;">
+          <div style="font-size:0.72rem;color:rgba(255,255,255,0.45);margin-top:0.35rem;">掃描加入 LINE @fqc1848m</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 科學體重管理師 · 保留所有權利</div>
+  </div>
+</footer>
+
+<a href="contact.html" class="line-fab" title="立即諮詢"><i class="bi bi-chat-dots-fill"></i></a>
+<script src="js/main.js"></script>
+<script>
+  // 學員 A 體重趨勢圖
+  const weeks = ['W1','W2','W3','W4','W5','W6','W7','W8','W9','W10','W11','W12'];
+  new Chart(document.getElementById('chartA'), {
+    type: 'line',
+    data: {
+      labels: weeks,
+      datasets: [
+        {
+          label: '體重 (kg)',
+          data: [85.2, 84.5, 83.8, 83.1, 82.4, 81.9, 81.2, 80.5, 79.8, 79.2, 78.6, 78.1],
+          borderColor: '#2C7BE5',
+          backgroundColor: 'rgba(44,123,229,0.08)',
+          tension: 0.4,
+          fill: true,
+          yAxisID: 'y'
+        },
+        {
+          label: '體脂率 (%)',
+          data: [32.4, 32.1, 31.8, 31.4, 31.0, 30.5, 30.0, 29.5, 29.0, 28.4, 27.8, 26.8],
+          borderColor: '#E74C3C',
+          backgroundColor: 'rgba(231,76,60,0.06)',
+          tension: 0.4,
+          fill: false,
+          yAxisID: 'y1'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { position: 'top' } },
+      scales: {
+        y:  { position: 'left',  title: { display: true, text: '體重 kg' }, suggestedMin: 76 },
+        y1: { position: 'right', title: { display: true, text: '體脂率 %' }, grid: { drawOnChartArea: false }, suggestedMin: 24 }
+      }
+    }
+  });
+</script>
+</body>
+</html>

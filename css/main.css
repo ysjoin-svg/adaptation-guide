@@ -1,0 +1,161 @@
+/* =====================
+   CSS 變數 & 基礎重置
+   ===================== */
+:root {
+  --primary:       #2C7BE5;
+  --primary-dark:  #1a5fc4;
+  --primary-light: #e8f1fd;
+  --accent:        #27AE60;
+  --accent-dark:   #1e8449;
+  --accent-light:  #e8f8ef;
+  --danger:        #E74C3C;
+  --danger-light:  #fdecea;
+  --bg:            #F8FAFC;
+  --bg-card:       #ffffff;
+  --text-primary:  #1A1A2E;
+  --text-secondary:#6C757D;
+  --border:        #E2E8F0;
+  --shadow:        0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md:     0 4px 16px rgba(0,0,0,0.09);
+  --shadow-lg:     0 8px 32px rgba(0,0,0,0.13);
+  --radius:        12px;
+  --radius-sm:     8px;
+  --radius-lg:     20px;
+  --transition:    all 0.3s ease;
+  --navbar-h:      68px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg);
+  line-height: 1.75;
+  padding-top: var(--navbar-h);
+}
+
+/* =====================
+   排版
+   ===================== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+h1 { font-size: clamp(1.9rem, 5vw, 3rem); }
+h2 { font-size: clamp(1.4rem, 4vw, 2.1rem); }
+h3 { font-size: clamp(1.05rem, 3vw, 1.4rem); }
+
+p { margin-bottom: 1rem; }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--primary); text-decoration: none; transition: var(--transition); }
+a:hover { color: var(--primary-dark); }
+
+img { max-width: 100%; height: auto; display: block; }
+
+ul, ol { list-style: none; }
+
+/* =====================
+   容器 & 版面
+   ===================== */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+section { padding: 4.5rem 0; }
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.section-header .label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-light);
+  padding: 0.25rem 0.85rem;
+  border-radius: 99px;
+  margin-bottom: 0.75rem;
+}
+.section-header h2 { margin-bottom: 0.75rem; }
+.section-header p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+/* 網格 */
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.5rem; }
+
+/* 工具類 */
+.text-center  { text-align: center; }
+.text-muted   { color: var(--text-secondary); }
+.highlight    { color: var(--accent); }
+.highlight-blue{ color: var(--primary); }
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+/* =====================
+   數字字型（Inter）
+   ===================== */
+.num {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+/* =====================
+   頁面頂部橫幅
+   ===================== */
+.page-banner {
+  background: linear-gradient(135deg, #0f2b5b 0%, var(--primary) 100%);
+  color: #fff;
+  padding: 3.5rem 0 2.5rem;
+  text-align: center;
+}
+.page-banner h1 { color: #fff; margin-bottom: 0.5rem; }
+.page-banner p  { color: rgba(255,255,255,0.8); font-size: 1.05rem; margin: 0; }
+
+/* =====================
+   Scroll Reveal
+   ===================== */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+[data-reveal].visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =====================
+   RWD 輔助
+   ===================== */
+@media (max-width: 768px) {
+  section { padding: 3rem 0; }
+  .section-header { margin-bottom: 2rem; }
+}

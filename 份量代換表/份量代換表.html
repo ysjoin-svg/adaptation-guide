@@ -469,68 +469,9 @@
   <div class="hand-diagram-card">
     <div class="hand-diagram-inner">
 
-      <!-- SVG 手掌示意圖 -->
+      <!-- 手掌示意圖 -->
       <div class="hand-svg-wrap">
-        <svg viewBox="0 0 205 298" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <style>
-              .dl { stroke:#E74C3C; stroke-width:2.2; stroke-dasharray:5,3.5; fill:none; opacity:0.88; }
-              .pl { fill:#C0392B; font-weight:900; font-family:'Noto Sans TC',Arial,sans-serif; }
-              .tl { fill:#666; font-family:'Noto Sans TC',Arial,sans-serif; font-weight:700; }
-            </style>
-          </defs>
-
-          <!--
-            單一連續路徑：掌心 132px，中指 135px，視覺等長
-            以單路徑繪製消除矩形拼接的接縫問題
-          -->
-          <path
-            fill="#FDDCB5" stroke="#c8845a" stroke-width="1.8"
-            stroke-linejoin="round" stroke-linecap="round"
-            d="
-              M 55 283 L 55 218
-              Q 46 208 38 196
-              Q 26 178 22 156
-              Q 18 132 24 110
-              Q 28 94 40 88
-              Q 52 82 62 90
-              Q 70 98 68 118
-              L 68 153
-              L 68 43
-              Q 68 26 80 26
-              Q 92 26 92 43
-              L 92 153
-              Q 96 172 100 153
-              L 100 36
-              Q 100 18 112 18
-              Q 124 18 124 36
-              L 124 153
-              Q 128 172 132 153
-              L 132 46
-              Q 132 30 143 30
-              Q 154 30 154 46
-              L 154 153
-              Q 157 172 160 153
-              L 160 70
-              Q 160 54 170 54
-              Q 180 54 180 70
-              L 180 218
-              Q 180 283 163 283
-              Z
-            "
-          />
-
-          <!-- 掌指分界（橫向） -->
-          <line class="dl" x1="68" y1="153" x2="180" y2="153"/>
-          <!-- 左兩指 vs 右兩指（縱向） -->
-          <line class="dl" x1="128" y1="18" x2="128" y2="153"/>
-
-          <!-- 份量標籤 -->
-          <text class="pl" font-size="16" x="96"  y="88"  text-anchor="middle">1P</text>
-          <text class="pl" font-size="16" x="157" y="94"  text-anchor="middle">1P</text>
-          <text class="pl" font-size="22" x="118" y="218" text-anchor="middle">2P</text>
-          <text class="tl" font-size="11" x="118" y="294" text-anchor="middle">整手 ＝ 4P</text>
-        </svg>
+        <img src="手.png" alt="手掌估量示意圖" style="width:100%; height:auto; display:block; border-radius:8px;">
       </div>
 
       <!-- 說明文字 -->
@@ -551,12 +492,14 @@
           <span class="hn-em">🤲</span>
           <div><strong>手掌心（不含手指）＝ 2 份 P</strong></div>
         </div>
-        <div style="margin-top:0.75rem; font-size:0.8rem; color:var(--muted); line-height:1.6;">
-          💡 優先選擇低脂肉品(如雞胸、魚、海鮮、里肌肉、板腱牛)，少選高油脂肉品(如五花肉)與加工肉品(如香腸、丸餃類等火鍋料)。
-        </div>
       </div>
 
     </div>
+  </div>
+
+  <div class="rule-card" style="background:#fff8f0; border:1px solid #fddcb5; margin-bottom:1.25rem; font-size:0.88rem;">
+    <span class="ri">💡</span>
+    <span>優先選擇低脂肉品(如雞胸、魚、海鮮、里肌肉、板腱牛)，少選高油脂肉品(如五花肉)與加工肉品(如香腸、丸餃類等火鍋料)。</span>
   </div>
 
   <!-- 奶類 -->

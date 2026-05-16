@@ -189,6 +189,16 @@
     .water-formula .f-eq { font-size: 1.2rem; font-weight: 700; color: var(--text); }
     .water-formula .f-eq span { color: var(--primary); }
     .water-formula .f-note { font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem; }
+    .wc-row { display:flex; align-items:center; justify-content:center; gap:0.6rem; margin-top:1.1rem; }
+    .wc-input { width:100px; padding:0.5rem 0.75rem; font-size:1.2rem; font-weight:700; font-family:'Inter',sans-serif; border:2px solid #93c5fd; border-radius:var(--radius-sm); text-align:center; color:var(--text); outline:none; transition:border-color 0.2s; background:#fff; }
+    .wc-input:focus { border-color:var(--primary); }
+    .wc-input::placeholder { font-size:0.8rem; font-weight:400; color:#a0aec0; }
+    .wc-unit { font-size:1rem; font-weight:700; color:var(--primary); }
+    .wc-hint { font-size:0.82rem; color:var(--muted); }
+    .wc-results { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-top:0.85rem; }
+    .wc-result-item { border-radius:10px; padding:0.85rem 1rem; border:1px solid; text-align:center; }
+    .wc-rl { font-size:0.74rem; font-weight:700; color:var(--muted); margin-bottom:0.25rem; }
+    .wc-rv { font-size:1.4rem; font-weight:900; font-family:'Inter',sans-serif; line-height:1.1; }
 
     .tip-box {
       border-radius: 10px;
@@ -397,7 +407,7 @@
       gap: 0.35rem;
     }
     .food-card:hover { background: #f8fafc; }
-    .food-emoji { font-size: 1.5rem; line-height: 1; }
+    .food-img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; display: block; }
     .food-name { font-size: 0.88rem; font-weight: 700; }
     .food-portion {
       font-size: 0.92rem;
@@ -572,15 +582,23 @@
       </div>
     </div>
 
-    <!-- 計算公式 -->
+    <!-- 計算公式 + 計算機 -->
     <div class="water-formula" style="margin-bottom:1.25rem;">
-      <div class="f-label">每日建議飲水量公式</div>
-      <div class="f-eq">體重（kg）<span> × 30 + 500 mL</span> ＝ 每日最低飲水量</div>
-      <div class="f-eq" style="margin-top:0.4rem; font-size:1rem; color:var(--muted);">最好能喝到 體重（kg）<span style="color:var(--accent);"> × 50 mL</span>（理想目標）</div>
-      <div class="f-note" style="margin-top:0.65rem;">
-        例如體重 60 公斤 →
-        最低 <strong>60 × 30 + 500 ＝ 2,300 mL</strong>，
-        理想目標 <strong>60 × 50 ＝ 3,000 mL</strong>
+      <div class="f-label" style="font-size:1.15rem; letter-spacing:0.02em; margin-bottom:0.85rem;">每日建議飲水量</div>
+      <div class="wc-row">
+        <input type="number" id="weightInput" class="wc-input" placeholder="輸入體重" min="1" max="300" step="0.1">
+        <span class="wc-unit">kg</span>
+        <span class="wc-hint">→ 立即計算</span>
+      </div>
+      <div class="wc-results" id="wcResults" style="display:none;">
+        <div class="wc-result-item" style="border-color:#93c5fd; background:#e8f1fd;">
+          <div class="wc-rl">每日最低飲水量</div>
+          <div class="wc-rv" id="wcMin" style="color:var(--primary);"></div>
+        </div>
+        <div class="wc-result-item" style="border-color:#86efac; background:#e8f8ef;">
+          <div class="wc-rl">理想目標</div>
+          <div class="wc-rv" id="wcIdeal" style="color:var(--accent);"></div>
+        </div>
       </div>
     </div>
 
@@ -887,28 +905,28 @@
       <div class="category-label">🍚 米飯類</div>
       <div class="food-grid">
         <div class="food-card">
-          <div class="food-emoji">🍚</div>
+          <img class="food-img" src="食物照片/白飯.jpg" alt="白米飯">
           <div class="food-name">白米飯</div>
           <div class="food-portion">¼ 碗</div>
           <div class="food-portion-sub">熟重約 50g</div>
           <div class="food-visual"><div class="food-bar quarter"></div></div>
         </div>
         <div class="food-card">
-          <div class="food-emoji">🌾</div>
+          <img class="food-img" src="食物照片/糙米飯.jpg" alt="糙米飯">
           <div class="food-name">糙米飯</div>
           <div class="food-portion">¼ 碗</div>
           <div class="food-portion-sub">熟重約 50g</div>
           <div class="food-visual"><div class="food-bar quarter"></div></div>
         </div>
         <div class="food-card">
-          <div class="food-emoji">🥣</div>
+          <img class="food-img" src="食物照片/粥稀飯.jpg" alt="白粥 / 稀飯">
           <div class="food-name">白粥 / 稀飯</div>
           <div class="food-portion">½ 碗</div>
           <div class="food-portion-sub">熟重約 125g</div>
           <div class="food-visual"><div class="food-bar half"></div></div>
         </div>
         <div class="food-card">
-          <div class="food-emoji">🍙</div>
+          <img class="food-img" src="食物照片/壽司.jpg" alt="壽司飯糰">
           <div class="food-name">壽司飯糰</div>
           <div class="food-portion">½ 個</div>
           <div class="food-portion-sub">約 40g</div>
@@ -920,28 +938,28 @@
       <div class="category-label">🍜 麵食類</div>
       <div class="food-grid">
         <div class="food-card">
-          <div class="food-emoji">🍝</div>
+          <img class="food-img" src="食物照片/白麵條.jpg" alt="白麵條">
           <div class="food-name">白麵條</div>
           <div class="food-portion">½ 碗</div>
           <div class="food-portion-sub">熟重約 60g</div>
           <div class="food-visual"><div class="food-bar half"></div></div>
         </div>
         <div class="food-card">
-          <div class="food-emoji">🍜</div>
+          <img class="food-img" src="食物照片/烏龍麵.jpg" alt="烏龍麵">
           <div class="food-name">烏龍麵</div>
           <div class="food-portion">½ 碗</div>
           <div class="food-portion-sub">熟重約 60g</div>
           <div class="food-visual"><div class="food-bar half"></div></div>
         </div>
         <div class="food-card">
-          <div class="food-emoji">🍜</div>
+          <img class="food-img" src="食物照片/冬粉.jpg" alt="冬粉 / 米粉">
           <div class="food-name">冬粉 / 米粉</div>
           <div class="food-portion">½ 碗</div>
           <div class="food-portion-sub">熟重約 60g</div>
           <div class="food-visual"><div class="food-bar half"></div></div>
         </div>
         <div class="food-card">
-          <div class="food-emoji">🥟</div>
+          <img class="food-img" src="食物照片/水餃.jpg" alt="水餃皮">
           <div class="food-name">水餃皮</div>
           <div class="food-portion">3–4 個</div>
           <div class="food-portion-sub">約 30g 麵皮</div>
@@ -953,28 +971,28 @@
       <div class="category-label">🍞 麵包 & 穀類</div>
       <div class="food-grid">
         <div class="food-card">
-          <div class="food-emoji">🍞</div>
+          <img class="food-img" src="食物照片/薄片吐司.jpg" alt="薄片吐司">
           <div class="food-name">薄片吐司</div>
           <div class="food-portion">1 片</div>
           <div class="food-portion-sub">約 25–30g</div>
           <div class="food-visual"><div class="food-bar full"></div></div>
         </div>
         <div class="food-card">
-          <div class="food-emoji">🫓</div>
+          <img class="food-img" src="食物照片/全麥吐司.jpg" alt="全麥吐司">
           <div class="food-name">全麥吐司</div>
           <div class="food-portion">1 片</div>
           <div class="food-portion-sub">約 25–30g</div>
           <div class="food-visual"><div class="food-bar full"></div></div>
         </div>
         <div class="food-card">
-          <div class="food-emoji">🥖</div>
+          <img class="food-img" src="食物照片/饅頭.jpg" alt="饅頭">
           <div class="food-name">饅頭</div>
           <div class="food-portion">⅓ 個</div>
           <div class="food-portion-sub">約 30g</div>
           <div class="food-visual"><div class="food-bar third"></div></div>
         </div>
         <div class="food-card">
-          <div class="food-emoji">🌾</div>
+          <img class="food-img" src="食物照片/燕麥片.jpg" alt="燕麥片（乾）">
           <div class="food-name">燕麥片（乾）</div>
           <div class="food-portion">3 湯匙</div>
           <div class="food-portion-sub">約 20g</div>
@@ -986,42 +1004,42 @@
       <div class="category-label">🌽 根莖類（也算主食！）</div>
       <div class="food-grid">
         <div class="food-card">
-          <div class="food-emoji">🍠</div>
+          <img class="food-img" src="食物照片/地瓜.jpg" alt="地瓜">
           <div class="food-name">地瓜</div>
           <div class="food-portion">½ 個（小）</div>
           <div class="food-portion-sub">約 55g</div>
           <div class="food-visual"><div class="food-bar half"></div></div>
         </div>
         <div class="food-card">
-          <div class="food-emoji">🥔</div>
+          <img class="food-img" src="食物照片/馬鈴薯.jpg" alt="馬鈴薯">
           <div class="food-name">馬鈴薯</div>
           <div class="food-portion">½ 個（中）</div>
           <div class="food-portion-sub">約 90g</div>
           <div class="food-visual"><div class="food-bar half"></div></div>
         </div>
         <div class="food-card">
-          <div class="food-emoji">🌽</div>
+          <img class="food-img" src="食物照片/玉米.jpg" alt="玉米">
           <div class="food-name">玉米</div>
           <div class="food-portion">⅔ 根</div>
           <div class="food-portion-sub">約 85g</div>
           <div class="food-visual"><div class="food-bar two-third"></div></div>
         </div>
         <div class="food-card">
-          <div class="food-emoji">🍄</div>
+          <img class="food-img" src="食物照片/山藥.jpg" alt="山藥">
           <div class="food-name">山藥</div>
           <div class="food-portion">1 段（中）</div>
           <div class="food-portion-sub">約 80g</div>
           <div class="food-visual"><div class="food-bar two-third"></div></div>
         </div>
         <div class="food-card">
-          <div class="food-emoji">🌿</div>
+          <img class="food-img" src="食物照片/南瓜.jpg" alt="南瓜">
           <div class="food-name">南瓜</div>
           <div class="food-portion">¼ 個（小）</div>
           <div class="food-portion-sub">約 85g（熟）</div>
           <div class="food-visual"><div class="food-bar quarter"></div></div>
         </div>
         <div class="food-card">
-          <div class="food-emoji">🥜</div>
+          <img class="food-img" src="食物照片/栗子.jpg" alt="栗子">
           <div class="food-name">栗子</div>
           <div class="food-portion">3 個</div>
           <div class="food-portion-sub">約 30g</div>
@@ -1071,5 +1089,16 @@
   本文件僅供課程學員使用，請勿轉發或對外分享。
 </footer>
 
+<script>
+  const wInput   = document.getElementById('weightInput');
+  const wResults = document.getElementById('wcResults');
+  wInput.addEventListener('input', function () {
+    const w = parseFloat(this.value);
+    if (!w || w <= 0) { wResults.style.display = 'none'; return; }
+    document.getElementById('wcMin').textContent   = Math.round(w * 30 + 500).toLocaleString() + ' mL';
+    document.getElementById('wcIdeal').textContent = Math.round(w * 50).toLocaleString() + ' mL';
+    wResults.style.display = 'grid';
+  });
+</script>
 </body>
 </html>
